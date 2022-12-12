@@ -11,7 +11,7 @@ The app is user-friendly and intuitive, making it easy for anyone to use. Overal
 
 Below I have a few screenshots of the application for reference.
 
-![Home page with background on the university.](https://postimg.cc/87QXjBVQ)
+![Screenshot](https://imgur.com/PTXS36n)
 
 ![View of the main courses page where you can add, update, view, and delete.](https://postimg.cc/qtpmGJR1)
 
