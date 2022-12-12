@@ -11,10 +11,14 @@ The app is user-friendly and intuitive, making it easy for anyone to use. Overal
 
 Below I have a few screenshots of the application for reference.
 
-![Screenshot](https://imgur.com/PTXS36n)
+# Home page with background on the university.
+![](images/1)
 
-![View of the main courses page where you can add, update, view, and delete.](https://postimg.cc/qtpmGJR1)
+# View of the main courses page where you can add, update, view, and delete.
+![](images/2)
 
-![Showing the Editing feature that all entities with edit enabled offers. These are prepopulated to help with data integrity.](https://postimg.cc/zyCtWbJL)
+# Showing the Editing feature that all entities with edit enabled offers. These are prepopulated to help with data integrity.
+![](images/3)
 
-![This is one of the intersection tables that only displays the attributes from the associated entity tables when there is data.](https://postimg.cc/kVwT10Rq)
+# This is one of the intersection tables that only displays the attributes from the associated entity tables when there is data.
+![](images/4)
