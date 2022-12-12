@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="table-responsive">
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Section Code</th>
+                <th>Course Name</th>
+                <th>Instructor Name</th>
+                <th>Enrollment Cap</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in sections %}
+                <tr>
+                    <td>{{item['section_id']}}</td>
+                    <td>{{item['section_code']}}</td>
+                    <td>{{item['course_name']}}</td>
+                    <td>{{item['instructor_name']}}</td>
+                    <td>{{item['enrollment_cap']}}</td>
+                    <td><a href="edit_section.html/{{item.section_id}}" class="btn btn-warning active" role="button" aria-pressed="true">Edit</a></td>
+                    <td><a href="delete_section/{{item.section_id}}" class="btn btn-danger active" role="button" aria-pressed="true" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
+                </tr>
+            {% endfor %}
+    </table>
+</div>
+
+    <br>
+    <h2>Add Sections</h2>
+    
+    <form action="/sections.html" method="post">
+        
+        <legend>Please Fill Out All Fields</legend>
+        
+        <fieldset>
+            <label for="course_id">Course:</label><br>
+            <select id="course_id" name="course_id" size="3">
+              {% for item2 in courses %}
+                <option value="{{item2['course_id']}}">{{item2['course']}}</option>
+              {% endfor %}
+            </select><br>
+
+            <label for="instructor_id">Instructor:</label><br>
+            <select id="instructor_id" name="instructor_id" size="3">
+              {% for item3 in instructors %}
+                <option value="{{item3['instructor_id']}}">{{item3['instructor_name']}}</option>
+              {% endfor %}
+            </select><br>
+            <label for="enrollment_cap">Enrollment Cap:</label><br>
+            <input type="text" id="enrollment_cap" name="enrollment_cap" value="" required><br><br>
+        </fieldset>
+
+        <input type="submit" value="Add Section" name="Add_Section" class="btn btn-primary">
+
+        <input type="reset" class="btn btn-secondary">
+        
+    </form>
+
+    <br><br>
+</body>
+{% endblock %}
+<!--Feature for search and table organizing-->
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        columns: [
+          null,
+          null,
+          null,
+          null,
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false}],
+      });
+    });
+  </script>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+<br>
+        <form action="/edit_instructor.html/{{data[0][0]}}" method="post">
+
+            <legend>Please Fill Out All Fields</legend>
+
+            <fieldset>
+                <input type="hidden" value="{{data[0][0]}}" class="form-control" id="instructor_id" name="instructor_id" required>
+
+                <label for="first_name">First Name:</label><br>
+                <input type="text" id="first_name" name="first_name" value="{{data[0][1]}}" required><br>
+
+                <label for="last_name">Last Name:</label><br>
+                <input type="text" id="last_name" name="last_name" value="{{data[0][2]}}" required><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" value="{{data[0][3]}}" required><br>
+
+                <label for="phone_number">Phone Number:</label><br>
+                <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value="{{data[0][4]}}" required><br>
+
+                <label for="address">Address:</label><br>
+                <input type="text" id="address" name="address" value="{{data[0][5]}}" required><br><br>
+            </fieldset>
+
+            <input type="submit" value="Save Edit" name="Edit_Instructor" class="btn btn-primary">
+
+            <input type="reset" class="btn btn-secondary">
+
+            <a href='/instructors.html'><input class="btn btn-secondary" type="button" value="Cancel"></a>
+        </form>
+    </body>
+{% endblock %}

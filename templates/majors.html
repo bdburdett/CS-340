@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<div class="table-responsive">
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Major Name</th>
+                <th>Abbreviation</th>
+                <th>Description</th>
+                <th>Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in majors %}
+                <tr>
+                    <td>{{item['major_id']}}</td>
+                    <td>{{item['major_name']}}</td>
+                    <td>{{item['abbreviation']}}</td>
+                    <td>{{item['description']}}</td>
+                    <td><a href="/edit_major.html/{{item.major_id}}" class="btn btn-warning active" role="button" aria-pressed="true">Edit</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <br>
+    <h2>Add Majors</h2>
+
+    <form action="/majors.html" method="post">
+
+    <legend>Please Fill Out All Fields</legend>
+
+        <fieldset>
+            <label for="major_name">Major Name:</label><br>
+            <input type="text" id="major_name" name="major_name" placeholder="Computer Science" value="" required><br>
+
+            <label for="abbreviation">Abbreviation:</label><br>
+            <input type="text" id="abbreviation" name="abbreviation" placeholder="CS" value="" required><br>
+
+            <label for="description">Description:</label><br>
+            <input type="text" id="description" name="description" placeholder="The study of..." value="" required><br><br>
+        </fieldset>
+
+    <input type="submit" value="Add Major" name="Add_Major" class="btn btn-primary">
+
+    <input type="reset" class="btn btn-secondary">
+
+    </form>
+
+    <br><br>
+
+{% endblock %}
+<!--Feature for search and table organizing-->
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        columns: [
+          null,
+          null,
+          null,
+          {orderable: false, searchable: false},
+          null],
+      });
+    });
+  </script>
+{% endblock %}

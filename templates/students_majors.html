@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="table-responsive">
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>Major Declaration ID</th>
+                <th>Student Name</th>
+                <th>Major Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in students_majors %}
+                <tr>
+                    <td>{{item['declaration_id']}}</td>
+                    <td>{{item['student']}}</td>
+                    <td>{{item['major']}}</td>
+                    <td><a href="delete_students_majors/{{item.declaration_id}}" class="btn btn-danger active" role="button" aria-pressed="true" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    <h2>Add Students Majors</h2>
+
+    <form action="/students_majors.html" method="post">
+
+        <legend>Please Fill Out All Fields</legend>
+
+        <fieldset>
+            
+            <label for="student_id">Student:</label><br>
+            <select id="student_id" name="student_id" size="3">
+              {% for item2 in students %}
+                <option value="{{item2['student_id']}}">{{item2['student_name']}}</option>
+              {% endfor %}
+            </select><br>
+
+            <label for="major_id">Major:</label><br>
+            <select id="major_id" name="major_id" size="3">
+              {% for item3 in majors %}
+                <option value="{{item3['major_id']}}">{{item3['major_name']}}</option>
+              {% endfor %}
+            </select><br>
+
+        </fieldset>
+        
+        <input type="submit" value="Add Students Majors" name="Add_Students_Majors" class="btn btn-primary">
+
+        <input type="reset" class="btn btn-secondary">
+
+    </form>
+
+    <br><br>
+
+{% endblock %}
+<!--Feature for search and table organizing-->
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        columns: [
+          null,
+          null,
+          null,
+          {orderable: false, searchable: false}],
+      });
+    });
+  </script>
+{% endblock %}

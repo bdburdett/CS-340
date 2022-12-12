@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %} 
+
+<h5>Please Complete All Fields</h5>
+
+        <form action="/edit_section.html/{{data[0][0]}}" method="post">
+
+            <legend>Please Fill Out All Fields</legend>
+
+            <fieldset>
+                <input type="hidden" value="{{data[0][0]}}" class="form-control" id="section_id" name="section_id" required>
+
+                <label for="course_id">Course ID:</label><br>
+                <input type="text" id="course_id" name="course_id" value="{{data[0][1]}}" required><br>
+
+                <label for="instructor_id">Instructor ID:</label><br>
+                <input type="text" id="instructor_id" name="instructor_id" value="{{data[0][2]}}" required><br>
+
+                <label for="enrollment_cap">Enrollment Cap:</label><br>
+                <input type="text" id="enrollment_cap" name="enrollment_cap" value="{{data[0][3]}}" required><br><br>
+            <fieldset>
+                
+                <input type="submit" value="Save Edit" name="Edit_Section" class="btn btn-primary">
+
+                <input type="reset" class="btn btn-secondary">
+    
+                <a href='/sections.html'><input class="btn btn-secondary" type="button" value="Cancel"></a>
+        </form>
+</body>
+{% endblock %}

@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %} 
+
+<div class="table-responsive">
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in instructors %}
+                <tr>
+                    <td>{{item['instructor_id']}}</td>
+                    <td>{{item['first_name']}}</td>
+                    <td>{{item['last_name']}}</td>
+                    <td>{{item['email']}}</td>
+                    <td>{{item['phone_number']}}</td>
+                    <td>{{item['address']}}</td>
+                    <td><a href="edit_instructor.html/{{item.instructor_id}}" class="btn btn-warning active" role="button" aria-pressed="true">Edit</a></td>
+                    <td><a href="delete_instructor/{{item.instructor_id}}" class="btn btn-danger active" role="button" aria-pressed="true" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<br>
+    <h2>Add Instructor</h2>
+
+    <form action="/instructors.html" method="post">
+
+        <legend>Please Fill Out All Fields</legend>
+
+        <fieldset>
+            <label for="first_name">First Name:</label><br>
+            <input type="text" id="first_name" name="first_name" placeholder="John" value="" required><br>
+
+            <label for="last_name">Last Name:</label><br>
+            <input type="text" id="last_name" name="last_name" placeholder="Doe" value="" required><br>
+
+            <label for="email">Email:</label><br>
+            <input type="email" id="email" name="email" placeholder="johndoe@gmail.com" value="" required><br>
+
+            <label for="phone_number">Phone Number:</label><br>
+            <input type="tel" id="phone_number" name="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" value="" required><br>
+
+            <label for="address">Address:</label><br>
+            <input type="text" id="address" name="address" placeholder="123 Main St, City, State ZIP" value="" required><br><br>
+        </fieldset>
+
+        <input type="submit" value="Add Instructor" name="Add_Instructor" class="btn btn-primary">
+
+        <input type="reset" class="btn btn-secondary">
+    </form> 
+
+    <br><br>
+
+{% endblock %}
+<!--Feature for search and table organizing-->
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        columns: [
+          null,
+          null,
+          null,
+          null,
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false}],
+      });
+    });
+  </script>
+{% endblock %}

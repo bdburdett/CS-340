@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+
+{% block content %}  
+
+<div class="table-responsive">
+    <table id="data" class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Prefix</th>
+                <th>Code</th>
+                <th>Course Name</th>
+                <th>Course Description</th>
+                <th>Has a Prereq?</th>
+                <th>Lecture Component</th>
+                <th>Lab Component</th>
+                <th>Credit Hour</th>
+                <th>Academic Level</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in courses %}
+                <tr>
+                    <td>{{item['course_id']}}</td>
+                    <td>{{item['prefix']}}</td>
+                    <td>{{item['code']}}</td>
+                    <td>{{item['course_name']}}</td>
+                    <td>{{item['description']}}</td>
+                    <td>{{item['has_prereq']}}</td>
+                    <td>{{item['lecture']}}</td>
+                    <td>{{item['lab']}}</td>
+                    <td>{{item['credit_hour']}}</td>
+                    <td>{{item['academic_level']}}</td>
+                    <td><a href="edit_course.html/{{item.course_id}}" class="btn btn-warning active" role="button" aria-pressed="true">Edit</a></td>
+                    <td><a href="delete_course/{{item.course_id}}" class="btn btn-danger active" role="button" aria-pressed="true" onclick="return confirm('Are you sure you want to delete this item?');">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+    <br>
+    <h2>Add Course</h2>
+
+    <form action="/courses.html" method="post">
+
+        <legend>Please Fill Out All Fields</legend>
+        
+        <fieldset>
+            <label for="prefix">Prefix:</label><br>
+            <input type="text" id="prefix" name="prefix" value="" placeholder="HIST" required><br>
+
+            <label for="code">Code:</label><br>
+            <input type="number" id="code" name="code" value="" placeholder="101" required><br>
+
+            <label for="course_name">Course Name:</label><br>
+            <input type="text" id="course_name" name="course_name" value="" placeholder="History" required><br>
+
+            <label for="description">Description:</label><br>
+            <textarea type="text" id="description" rows="4" name="description" value="" placeholder="The study of..." required></textarea><br><br>
+
+            <!-- Changed value attribute to 1 & 0 instead of "yes" & "no" for bool data type -->
+            <label for="has_prereq">Has a Prereq:</label><br>
+            <input type="radio" id="has_prereq" name="has_prereq" value="1" required>
+            <label for="has_prereq">Yes</label>
+            <input type="radio" id="has_prereq" name="has_prereq" value="0">
+            <label for="has_prereq">No</label><br><br>
+
+            <!-- Changed lecture input to radio buttons -->
+            <label for="lecture">Lecture:</label><br>
+            <input type="radio" id="lecture" name="lecture" value="1" required>
+            <label for="lecture">Yes</label>
+            <input type="radio" id="lecture" name="lecture" value="0">
+            <label for="lecture">No</label><br><br>
+
+            <!-- Changed lab input to radio buttons -->
+            <label for="lab">Lab:</label><br>
+            <input type="radio" id="lab" name="lab" value="1" required>
+            <label for="lab">Yes</label>
+            <input type="radio" id="lab" name="lab" value="0">
+            <label for="lab">No</label><br><br>
+
+            <label for="credit_hour">Credit Hours:</label><br>
+            <input type="number" id="credit_hour" name="credit_hour" value="" placeholder="3"required><br>
+
+            <!--<label for="academic_level">Academic Level:</label><br>-->
+            <input type="hidden" id="academic_level" name="academic_level" value="UG" placeholder="UG" required><br><br>
+        </fieldset>
+
+        <input type="submit" value="Add Course" name="Add_Course" class="btn btn-primary">
+
+        <input type="reset" class="btn btn-secondary">
+        
+    </form> 
+
+    <br><br>
+
+{% endblock %}
+<!--Feature for search and table organizing-->
+{% block scripts %}
+  <script>
+    $(document).ready(function () {
+      $('#data').DataTable({
+        columns: [
+          null,
+          null,
+          null,
+          null,
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false},
+          null,
+          null,
+          {orderable: false, searchable: false},
+          {orderable: false, searchable: false}],
+      });
+    });
+  </script>
+{% endblock %}

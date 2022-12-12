@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %} 
+
+<h5>Please Complete All Fields</h5>
+
+<form action="/edit_major.html/{{data[0][0]}}" method="post">
+
+    <legend>Please Fill Out All Fields</legend>
+
+    <fieldset>
+        <input type="hidden" value="{{data[0][0]}}" class="form-control" id="major_id" name="major_id" required>
+
+        <label for="major_name">Major Name:</label><br>
+        <input type="text" id="major_name" name="major_name" value="{{data[0][1]}}" required><br>
+
+        <label for="abbreviation">Abbreviation:</label><br>
+        <input type="text" id="abbreviation" name="abbreviation" value="{{data[0][2]}}" required><br>
+
+        <label for="description">Description:</label><br>
+        <input type="text" id="description" name="description" value="{{data[0][3]}}" required><br><br>
+    </fieldset>
+
+    <input type="submit" value="Save Edit" name="Edit_Major" class="btn btn-primary">
+
+            <input type="reset" class="btn btn-secondary">
+
+            <a href='/majors.html'><input class="btn btn-secondary" type="button" value="Cancel"></a>
+</form>
+
+</body>
+{% endblock %}

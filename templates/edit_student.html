@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+<br>
+<h5>Please Complete All Fields</h5>
+
+        <form action="/edit_student.html/{{data[0][0]}}" method="post">
+            
+            <legend>Please Fill Out All Fields</legend>
+
+            <fieldset>
+                <input type="hidden" value="{{data[0][0]}}" class="form-control" id="student_id" name="student_id" required>
+
+                <label for="degree_type">Degree Type:</label><br>
+                <select id="degree_type" name="degree_type">
+                    <option value="degree_type">UG</option>
+                </select><br>
+                <!--<input type="text" id="degree_type" name="degree_type" value="{{data[0][1]}}" required><br>-->
+
+                <label for="first_name">First Name:</label><br>
+                <input type="text" id="first_name" name="first_name" value="{{data[0][2]}}" required><br>
+
+                <label for="last_name">Last Name:</label><br>
+                <input type="text" id="last_name" name="last_name" value="{{data[0][3]}}" required><br>
+
+                <label for="email">Email:</label><br>
+                <input type="email" id="email" name="email" value="{{data[0][4]}}" required><br>
+
+                <label for="phone_number">Phone Number:</label><br>
+                <input type="tel" id="phone_number" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" name="phone_number" value="{{data[0][5]}}" required><br>
+
+                <label for="address">Address:</label><br>
+                <input type="text" id="address" name="address" value="{{data[0][6]}}" required><br><br>
+            </fieldset>
+
+            <input type="submit" value="Save Edit" name="Edit_Student" class="btn btn-primary">
+
+            <input type="reset" class="btn btn-secondary">
+
+            <a href='/students.html'><input class="btn btn-secondary" type="button" value="Cancel"></a>
+
+        </form>
+    </body>
+{% endblock %}

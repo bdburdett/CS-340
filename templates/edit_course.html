@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block content %}
+<body>
+<br>
+<form action="/edit_course.html/{{data[0][0]}}" method="post">
+    
+    <legend>Please Fill Out All Fields</legend>
+
+        <fieldset>
+            <input type="hidden" value="{{data[0][0]}}" class="form-control" id="course_id" name="course_id" required>
+            
+            <label for="prefix">Prefix:</label><br>
+            <input type="text" id="prefix" name="prefix" value="{{data[0][1]}}" required><br>
+
+            <label for="code">Code:</label><br>
+            <input type="number" id="code" name="code" value="{{data[0][2]}}" required><br>
+
+            <label for="course_name">Course Name:</label><br>
+            <input type="text" id="course_name" name="course_name" value="{{data[0][3]}}" required><br>
+
+            <label for="description">Description:</label><br>
+            <input type="text" id="description" name="description" value="{{data[0][4]}}" required><br><br>
+
+            <!-- updated value attributes from "yes"/"no" to 1/0 -->
+            <label for="has_prereq">Has a Prereq:</label><br>
+            {% if data[0][5] == 1 %}
+              <input type="radio" id="has_prereq" name="has_prereq" value="1" checked="checked" required>
+              <label for="has_prereq">Yes</label>
+              <input type="radio" id="has_prereq" name="has_prereq" value="0" required>
+              <label for="has_prereq">No</label><br><br>
+            {% else %}
+              <input type="radio" id="has_prereq" name="has_prereq" value="1" required>
+              <label for="has_prereq">Yes</label>
+              <input type="radio" id="has_prereq" name="has_prereq" value="0" checked="checked" required>
+              <label for="has_prereq">No</label><br><br>
+            {% endif %}
+
+          <!-- changed lecture and lab to radio buttons -->
+            {% if data[0][6] == 1 %}
+              <label for="lecture">Lecture:</label><br>
+              <input type="radio" id="lecture" name="lecture" value="1" checked="checked" required>
+              <label for="lecture">Yes</label>
+              <input type="radio" id="lecture" name="lecture" value="0" required>
+              <label for="lecture">No</label><br><br>
+            {% else %}
+              <label for="lecture">Lecture:</label><br>
+              <input type="radio" id="lecture" name="lecture" value="1" required>
+              <label for="lecture">Yes</label>
+              <input type="radio" id="lecture" name="lecture" value="0" checked="checked" required>
+              <label for="lecture">No</label><br><br>
+            {% endif %}
+
+          <!-- corrected id/name from lecture to lab -->
+            {% if data[0][7] == 1 %}
+              <label for="lab">Lab:</label><br>
+              <input type="radio" id="lab" name="lab" value="1" checked="checked" required>
+              <label for="lab">Yes</label>
+              <input type="radio" id="lab" name="lab" value="0" required>
+              <label for="lab">No</label><br><br>
+            {% else %}
+              <label for="lab">Lab:</label><br>
+              <input type="radio" id="lab" name="lab" value="1" required>
+              <label for="lab">Yes</label>
+              <input type="radio" id="lab" name="lab" value="0" checked="checked" required>
+              <label for="lab">No</label><br><br>
+            {% endif %}
+
+            <!-- changed index reference for credit_hour & academic label -->
+            <label for="credit_hour">Credit Hours:</label><br>
+            <input type="number" id="credit_hour" name="credit_hour" value="{{data[0][8]}}" required><br>
+
+            <label for="academic_level">Academic Level:</label><br>
+            <select id="academic_level" name="academic_level">
+                <option value="{{data[0][9]}}">UG</option>
+            </select><br><br>
+            <!--<input type="text" id="academic_level" name="academic_level" value="{{data[0][9]}}" required><br><br>-->
+        </fieldset>
+
+    <input type="submit" value="Save Edit" name="Edit_Course" class="btn btn-primary">
+
+    <input type="reset" class="btn btn-secondary">
+
+    <a href='/courses.html'><input class="btn btn-secondary" type="button" value="Cancel"></a>
+</form>
+
+</body>
+{% endblock %}
