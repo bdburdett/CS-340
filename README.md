@@ -1,5 +1,7 @@
 ## Course Scheduling Web App
 
+I plan to have this deployed in the next few weeks and will have a link available to check it out.
+
 The GitHub repository for my course scheduling web app is a full-featured application that allows users to easily manage their course schedules. The app is built using **MySQL** as the database, and it provides full **CRUD** (create, read, update, delete) functionality. This allows users to:
 
 - Add courses to their schedules
